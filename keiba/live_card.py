@@ -9,6 +9,7 @@ import json
 import math
 import re
 import sys
+import urllib.error
 import urllib.request
 from datetime import datetime
 from pathlib import Path
@@ -40,11 +41,22 @@ def fetch_odds(race_id):
 
     戻り値 {'odds', 'asof'（JRA発表時刻）, 'official_by_kind'（券種ごとのJRA発表時刻）, 'fetched_at'（券種ごとの取得時刻）,
     'scratched'（取消・除外と明示された馬番）}。
-    単勝が1頭も取れなければ odds は None。
+    単勝が1頭も取れなければ odds は None。発売前の券種（API が 400 を返す）と、予想オッズ（status が yoso）は
+    実オッズではないので取れなかった券種として飛ばす（予想オッズはレコードの pred_odds_* で扱う）。
     """
     odds, asof, fetched_at, official, scratched = {}, None, {}, {}, set()
     for t, (key, sep, has_range) in TYPES.items():
-        data = _get(race_id, t).get('data') or {}
+        try:
+            resp = _get(race_id, t)
+        except urllib.error.HTTPError as e:
+            if e.code != 400:
+                raise
+            continue  # 発売前（前日発売の前は単勝以外の券種が 400 になる）
+        if not isinstance(resp, dict) or resp.get('status') == 'yoso':
+            continue
+        data = resp.get('data') or {}
+        if not isinstance(data, dict):
+            continue
         got = datetime.now().astimezone().isoformat(timespec='seconds')
         table = (data.get('odds') or {}).get(str(t)) or {}
         if t == 2:  # 複勝は type=1 の応答に含まれない
