@@ -197,6 +197,31 @@ class SettleRecordTest(unittest.TestCase):
             self.write(rec)
             self.assertIn('精算後に変更', settlement.report(self.out))
 
+    def test_report_lists_races_without_plans(self):
+        # 判断時刻を過ぎた見送り（plans が空）は、どの試算の表にも0円の行として出る。試算が途中から加わった場合、
+        # その試算が無かったレースは出さず、累計のレース数もその表に載ったレースだけを数える
+        from keiba import engine
+        self.out.mkdir(parents=True, exist_ok=True)
+        late = self.dir / 'late.json'
+        late.write_text(json.dumps({'race': 'L', 'decision': {'stake': 0, 'note': '判断時刻超過のため見送り'}}), encoding='utf-8')
+        base = {'official': {'finish': [3, 1, 2]}, 'source': 'fixture'}
+        plan = {'stake': 1000, 'refund': 0, 'payout': 1500, 'profit': 500, 'roi': 1.5}
+        items = [dict(base, race_id='A', race='Aレース', start_at='2026-10-04T15:45:00+09:00', record=str(late),
+                      plans={'本番': plan}),
+                 dict(base, race_id='B', race='Bレース', start_at='2026-10-11T15:45:00+09:00', record=str(late),
+                      plans={'本番': plan, '参考（後から）': plan}),
+                 dict(base, race_id='C', race='Cレース', start_at='2026-10-18T15:45:00+09:00', record=str(late), plans={})]
+        for it in items:
+            it['record_hash'] = settlement.decision_hash(engine._read_json(late))
+            engine._write_json(self.out / f"{it['race_id']}.json", it)
+        text = settlement.report(self.out)
+        main, later = text.split('\n## 参考（後から）')[0], text.split('\n## 参考（後から）')[1].split('\n## ')[0]
+        self.assertIn('| Cレース（3-1-2・判断時刻超過のため見送り） | 0 | 0 | 0 | +0 | — |', main)
+        self.assertIn('| 3レース | 2,000 | 0 | 3,000 | +1,000 | 150.0% |', main)
+        self.assertNotIn('Aレース', later)
+        self.assertIn('Cレース', later)
+        self.assertIn('| 2レース | 1,000 | 0 | 1,500 | +500 | 150.0% |', later)
+
     def test_holiday_monday_joins_saturday_week(self):
         tmp = Path(tempfile.mkdtemp())
         rec = str(tmp / 'r.json')

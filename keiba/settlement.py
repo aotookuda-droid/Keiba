@@ -263,6 +263,28 @@ def _weekend(s):
     return datetime.fromordinal(d.toordinal() - back).strftime('%Y/%m/%d週')
 
 
+NO_PLAN = {'stake': 0, 'refund': 0, 'payout': 0}
+
+
+def _plan_or_skip(s, name):
+    """そのレースの試算 name の精算。提案を1つも計算しなかったレース（判断時刻を過ぎた見送りなど、plans が空）は
+    どの試算でも0円の見送りとして数える。試算が途中から加わった場合の、その試算が無かったレースは数えない（None）。"""
+    if not s['plans']:
+        return NO_PLAN
+    return s['plans'].get(name)
+
+
+def _skip_note(s):
+    """提案を計算しなかったレースの見送りの理由（記録の decision.note）。"""
+    try:
+        note = (engine._read_json(s['record']).get('decision') or {}).get('note')
+    except OSError:
+        note = None
+    if not note:
+        return '見送り・提案なし'
+    return note if '見送り' in note else f"見送り・{note}"
+
+
 def rule_periods(items, name):
     """購入ルールの変更日（engine.RULES_CHANGED）で区切った期間ごとの (表示名, レース数, [提案額, 返還, 払戻])。
     発走日が変更日より後のレースを新しい期間に入れる（変更日当日に判断したレースはない前提）。30レースごとの見直し用。"""
@@ -270,7 +292,7 @@ def rule_periods(items, name):
     labels = [f"〜{cuts[0]}（変更前）"] + [f"{c}〜（{engine.RULES_CHANGED[i]['change']}）" for i, c in enumerate(cuts)]
     out = [[label, 0, [0, 0, 0]] for label in labels]
     for s in items:
-        v = s['plans'].get(name)
+        v = _plan_or_skip(s, name)
         if not v:
             continue
         i = sum(s['start_at'][:10] > c for c in cuts)
@@ -304,13 +326,15 @@ def report(directory=SETTLEMENT_DIR):
     header = ['| 区分 | 提案額 | 返還 | 払戻 | 収支 | 回収率 |', '|---|---:|---:|---:|---:|---:|']
     for name in plan_names:
         lines += [f'## {name}', '', '### レース別', ''] + header
-        weeks, total = {}, [0, 0, 0]
+        weeks, total, n = {}, [0, 0, 0], 0
         for s in items:
-            v = s['plans'].get(name)
+            v = _plan_or_skip(s, name)
             if not v:
                 continue
+            n += 1
             finish = '-'.join(map(str, s['official']['finish'][:3]))
-            lines.append(row(f"{s['race']}（{finish}）", v))
+            skip = '' if s['plans'] else f"・{_skip_note(s)}"
+            lines.append(row(f"{s['race']}（{finish}{skip}）", _summary(v['stake'], v['refund'], v['payout'])))
             w = weeks.setdefault(_weekend(s), [0, 0, 0])
             for acc in (w, total):
                 acc[0] += v['stake']
@@ -320,7 +344,7 @@ def report(directory=SETTLEMENT_DIR):
         lines += [row(k, _summary(*w)) for k, w in weeks.items()]
         lines += ['', '### 購入ルール変更の前後', ''] + header
         lines += [row(f"{label}（{n}レース）", _summary(*acc)) for label, n, acc in rule_periods(items, name)]
-        lines += ['', '### 累計', ''] + header + [row(f'{len(items)}レース', _summary(*total)), '']
+        lines += ['', '### 累計', ''] + header + [row(f'{n}レース', _summary(*total)), '']
     lines += probability_check(items)
     lines += order_check(items)
     if warnings:
