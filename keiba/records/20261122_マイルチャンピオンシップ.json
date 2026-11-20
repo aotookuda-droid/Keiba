@@ -1,0 +1,411 @@
+{
+  "race": "2026/11/22 京都11R マイルチャンピオンシップ(G1) 芝1600(外) 15:40発走",
+  "race_id": "202608050611",
+  "start_at": "2026-11-22T15:40:00+09:00",
+  "surface": "芝",
+  "status": "pre_race_1120（枠順確定。調教・厩舎コメントは未反映）",
+  "field_size_at_sales_start": 18,
+  "pace_note": "ハナ候補（過去5走で1角1番手2回以上）1頭: ワールズエンド12番（安田記念・京王杯SC・新潟日報賞・新春Sで逃げ、近5走で1角1番手3回）。エンブロイダリー2番（阪神牝馬Sで逃げ）・シックスペンス4番（フェブラリーSで逃げ）は1回でハナ候補に数えない。番手で運ぶのはアドマイヤズーム5番・レザベーション13番・エコロブルーム15番・ロデオドライブ8番。初期値（1頭: スロー35.5%・ミドル29%・ハイ35.5%）のまま。京都芝1600外回りは向正面からの発走で3角の坂まで距離があり、逃げ馬1頭なら隊列は早く決まりやすいが、強い根拠がないため初期値から動かさない。ハイ=スローのため front_runner_bad_pace の条件（ハイがスロー以上）には形式上当たるが、ワールズエンドの前走（スプリンターズS）は3番手で「前走逃げて好走」に当たらず誰にも付けない。厩舎コメントでハナの主張が出れば見直す。過去10年の傾向（keiba/reports/trends_マイルチャンピオンシップ.md、2020〜22年は阪神）: 逃げ10頭で1勝・3着内1、先行の3着内率24%・差し20%・追込9%。逃げ・先行が特に有利な傾向ではなく、ハイ寄りの見立てを改める根拠もないため据え置く。",
+  "card_notes": [
+    "⚠ 11/20 時点は netkeiba の予想オッズ（単勝のみ）で計算。馬連・ワイド・三連系のオッズは前日発売から。券種を広げた試算は前日オッズで出し直す",
+    "11/20 調教・厩舎コメント（netkeiba プレミアム）は未確認。final_work_strong・hill_23・stable_concern などは未判定",
+    "騎手順位は netkeiba の JRA 騎手リーディング（11/20取得）。短期免許の騎手（バルザローナ・プーシャン・モレイラ・Ｃ．デムーロ）が乗る馬は比較せず保留"
+  ],
+  "horses": [
+    {
+      "num": 1,
+      "gate": 1,
+      "name": "エルデナリ",
+      "ability": 75,
+      "style": "差し",
+      "gate_zone": "内",
+      "early_positions": [],
+      "minus": [
+        "first_long_trip"
+      ],
+      "plus": [],
+      "notes": "騎手バルザローナ（継続）。仏調教のセン3歳。ムーラン・ド・ロンシャン賞(GI・7頭)1着、メシドール賞(GIII)3着、仏ダ1500のOP1着。日本・香港の馬との対戦がなく、欧州GIの勝ち方だけで日本の高速馬場のGIを測れないため、日本のGI勝ち馬より控えめに75。初来日→first_long_trip。前走は海外のため枠・斤量の比較はしない。通過順の記録がなく early_positions なし（netkeiba の脚質表示は差し）。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 8.4
+    },
+    {
+      "num": 2,
+      "gate": 1,
+      "name": "エンブロイダリー",
+      "ability": 80,
+      "style": "差し",
+      "gate_zone": "内",
+      "early_positions": [
+        6,
+        1,
+        6,
+        6,
+        9
+      ],
+      "minus": [
+        "long_layoff",
+        "fillies_to_open"
+      ],
+      "plus": [
+        "turf_to_inner"
+      ],
+      "notes": "騎手Ｃ．ルメール（継続）。ヴィクトリアマイル(GI)1着（12番枠6-6から上がり33.0、0.2差）、阪神牝馬S(GII)逃げ切り、秋華賞・桜花賞のGI3勝。香港マイル11着は大外14番。ヴィクトリアマイル以来189日（6ヵ月半）の休み明け→long_layoff。前走が牝馬限定GI→fillies_to_open（牡馬相手は香港マイルだけ）。前走18頭12番(中)→1番(内)→turf_to_inner（6番手前後で運べる馬で、内で脚をためられる）。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 4.2
+    },
+    {
+      "num": 3,
+      "gate": 2,
+      "name": "ドラゴンブースト",
+      "ability": 70,
+      "style": "差し",
+      "gate_zone": "内",
+      "early_positions": [
+        7,
+        11,
+        6,
+        7,
+        2
+      ],
+      "minus": [
+        "jockey_downgrade",
+        "weight_increase"
+      ],
+      "plus": [
+        "turf_to_inner",
+        "second_start"
+      ],
+      "notes": "騎手浜中俊（前走は丹内祐次）。マイラーズC(GII)2着0.1（1番枠6-8から上がり33.0、勝ち馬アドマイヤズーム）、大阪城S(L)1着。安田記念8着0.6（15番枠11-11）、毎日王冠11着0.6と上位と差。→70。丹内（9位）→浜中（29位）→jockey_downgrade。前走57kg→58kg→weight_increase。前走17頭9番(中)→3番(内)→turf_to_inner。前走毎日王冠は安田記念から119日の休み明け→second_start。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 64.1
+    },
+    {
+      "num": 4,
+      "gate": 2,
+      "name": "シックスペンス",
+      "ability": 78,
+      "style": "先行",
+      "gate_zone": "内",
+      "early_positions": [
+        2,
+        9,
+        1,
+        2,
+        4
+      ],
+      "minus": [],
+      "plus": [],
+      "notes": "騎手プーシャン（前走JRA戦は武豊。短期免許で順位の比較ができず加減点なし）。安田記念(GI)を2-2の先行から1着（2着ワールズエンド・ガイアフォースと0.0差）。中山記念・毎日王冠のGII勝ち。マイラーズC7着0.4（16番枠）、ジャックルマロワ賞10着（仏・60kg）。→78。前走は海外のため枠・斤量の比較はしない。ブリンカー（B表示）は過去の着用歴を確認できず first_blinker は付けない。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 17.5
+    },
+    {
+      "num": 5,
+      "gate": 3,
+      "name": "アドマイヤズーム",
+      "ability": 76,
+      "style": "先行",
+      "gate_zone": "中",
+      "early_positions": [
+        4,
+        2,
+        6,
+        3,
+        4
+      ],
+      "minus": [],
+      "plus": [
+        "second_start"
+      ],
+      "notes": "騎手武豊（継続）。マイラーズC(GII)を2-2から1着（京都外1600、2着ドラゴンブースト0.1）、朝日杯FS1着。富士S6着0.6は半年ぶり+10kgで4-3から上がり35.2と止まった（前半33.5の速い流れを先行）。富士Sの記録では77、休み明けの敗戦で1下げ76。前走は174日ぶり→second_start（叩き2戦目）。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 10.1
+    },
+    {
+      "num": 6,
+      "gate": 3,
+      "name": "ピコローズ",
+      "ability": 66,
+      "style": "差し",
+      "gate_zone": "中",
+      "early_positions": [
+        7,
+        12,
+        5,
+        9,
+        8
+      ],
+      "minus": [
+        "weight_increase"
+      ],
+      "plus": [],
+      "notes": "騎手三浦皇成（継続）。京成杯AH(GIII)を10人気・53kgで1着（7-7-6から0.1差、2着エコロブルーム58kg）。その前は新潟日報賞(3勝)1着。重賞はハンデの軽量で1勝だけ、GIの出走なし→66。前走53kg→56kg（+3kg）→weight_increase。前走は牡牝混合のハンデ戦で fillies_to_open に当たらない。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 85.8
+    },
+    {
+      "num": 7,
+      "gate": 4,
+      "name": "ココナッツブラウン",
+      "ability": 72,
+      "style": "差し",
+      "gate_zone": "中",
+      "early_positions": [
+        11,
+        11,
+        7,
+        11,
+        11
+      ],
+      "minus": [
+        "fillies_to_open",
+        "weight_increase"
+      ],
+      "plus": [],
+      "notes": "騎手北村友一（継続）。クイーンS(GIII)1着、ヴィクトリアマイル(GI)5着0.5（11-12から上がり32.9）、昨年のエリザベス女王杯5着0.5、札幌記念2着0.2（牡馬相手）。→72。前走が牝馬限定→fillies_to_open。前走55kg→56kg→weight_increase。1800→1600(−200m)は距離変更のフラグに当たらない（ヴィクトリアマイル5着の実績）。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 19.6
+    },
+    {
+      "num": 8,
+      "gate": 4,
+      "name": "ロデオドライブ",
+      "ability": 77,
+      "style": "先行",
+      "gate_zone": "中",
+      "early_positions": [
+        4,
+        14,
+        3,
+        3,
+        2
+      ],
+      "minus": [],
+      "plus": [
+        "big_distance_change",
+        "second_start"
+      ],
+      "notes": "騎手モレイラ（前走はルメール。短期免許で順位の比較ができず加減点なし）。NHKマイルC(GI)1着（17番枠14-14から差し切り）、NZT(GII)2着0.0、新潟記念(GIII)2着0.0（2000・古馬相手）。3歳57kg。→77。新潟記念2000→1600(−400m)、1600でNHKマイルC1着→big_distance_change。前走新潟記念はNHKマイルCから112日の休み明け→second_start。先行も差しもできる（近5走1角4・14・3・3・2番手）。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 4.4
+    },
+    {
+      "num": 9,
+      "gate": 5,
+      "name": "ジューンテイク",
+      "ability": 66,
+      "style": "差し",
+      "gate_zone": "中",
+      "early_positions": [
+        12,
+        7,
+        7,
+        2,
+        12
+      ],
+      "minus": [],
+      "plus": [
+        "second_start",
+        "distance_change_try"
+      ],
+      "notes": "騎手川田将雅（前走は武豊。11位→5位で10位差に届かず加点なし）。京都記念(GII・2200)1着、金鯱賞4着0.1、中日新聞杯3着0.2と2000〜2200の馬。オールカマー7着1.2・宝塚記念8着1.6は重馬場。マイルはGIで2歳の朝日杯FS4着0.2以来。→66。2200→1600(−600m)、今回距離±100mで3勝クラス以上の3着以内がない→distance_change_try（距離適性は不確実）。前走オールカマーは98日ぶり→second_start。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 38.7
+    },
+    {
+      "num": 10,
+      "gate": 5,
+      "name": "ウォーターリヒト",
+      "ability": 71,
+      "style": "追込",
+      "gate_zone": "中",
+      "early_positions": [
+        9,
+        16,
+        12,
+        10,
+        7
+      ],
+      "minus": [
+        "weight_increase"
+      ],
+      "plus": [
+        "course_repeater",
+        "second_start"
+      ],
+      "notes": "騎手幸英明（継続）。昨年のマイルCS3着0.3（15人気・7-8から上がり33.0）、東京新聞杯(GIII)3着0.1・2025年同1着。安田記念13着1.0・マイラーズC13着0.5は後方のまま、富士S7着0.7。→71。昨年の同レース3着→course_repeater。前走57kg→58kg→weight_increase。前走富士Sは安田記念から132日の休み明け→second_start。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 53.5
+    },
+    {
+      "num": 11,
+      "gate": 6,
+      "name": "ガイアフォース",
+      "ability": 77,
+      "style": "差し",
+      "gate_zone": "中",
+      "early_positions": [
+        8,
+        4,
+        2,
+        8,
+        11
+      ],
+      "minus": [],
+      "plus": [
+        "course_repeater"
+      ],
+      "notes": "騎手西村淳也（前走は横山武史。4位→6位で加減点なし）。安田記念(GI)2着0.0（14番枠8-9から上がり33.0）、昨年のマイルCS2着0.3（4-4）、2025年安田記念2着0.2、富士S(GII)1着。ドバイターフ6着。7歳。→77。昨年の同レース2着→course_repeater。安田記念以来168日（5ヵ月半）で long_layoff（半年以上）に当たらない。前走17頭14番(外)→11番(中)は内中外の区分が外→中で、内枠替わり（turf_to_inner）には当たらない。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 17.3
+    },
+    {
+      "num": 12,
+      "gate": 6,
+      "name": "ワールズエンド",
+      "ability": 78,
+      "style": "逃げ",
+      "gate_zone": "中",
+      "early_positions": [
+        3,
+        1,
+        1,
+        3,
+        1
+      ],
+      "minus": [],
+      "plus": [
+        "big_distance_change",
+        "second_start"
+      ],
+      "notes": "騎手Ｃ．デムーロ（前走は津村明秀。短期免許で順位の比較ができず加減点なし）。安田記念(GI)を逃げて2着0.0、スプリンターズS(GI)2着0.0（3-3）、京王杯SC(GII)逃げ切り。→78。スプリンターズS1200→1600(+400m)、1600で安田記念2着→big_distance_change。前走スプリンターズSは112日ぶり→second_start。ハナ候補（近5走で1角1番手3回）。前走は逃げていない（3番手）ので front_runner_bad_pace は付けない。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 11.8
+    },
+    {
+      "num": 13,
+      "gate": 7,
+      "name": "レザベーション",
+      "ability": 68,
+      "style": "先行",
+      "gate_zone": "外",
+      "early_positions": [
+        5,
+        16,
+        7,
+        2,
+        2
+      ],
+      "minus": [
+        "weight_increase",
+        "turf_to_outer"
+      ],
+      "plus": [],
+      "notes": "騎手田口貫太（継続）。3歳。NZT(GII)1着（2-2-2、2着ロデオドライブ0.0）、まほろばS(L・京都外1600)1着。NHKマイルC6着0.5（2-2）、京成杯AH11着0.7、スワンS10着0.3。古馬重賞は未勝利→68。前走55kg→57kg（+2kg）→weight_increase。前走13頭7番(中)→13番(外)→turf_to_outer。中2週。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 45.5
+    },
+    {
+      "num": 14,
+      "gate": 7,
+      "name": "スターアニス",
+      "ability": 78,
+      "style": "差し",
+      "gate_zone": "外",
+      "early_positions": [
+        10,
+        4,
+        9,
+        8,
+        6
+      ],
+      "minus": [
+        "turf_to_outer"
+      ],
+      "plus": [
+        "big_distance_change",
+        "second_start"
+      ],
+      "notes": "騎手松山弘平（前走はルメール。1位→2位で加減点なし）。3歳牝馬。桜花賞(GI)1着（15番枠9-9から0.4差）、阪神JF(GI)1着、スプリンターズS(GI)4着0.2（1人気・古馬相手）。オークス12着0.8は距離。→78。スプリンターズS1200→1600(+400m)、1600で桜花賞・阪神JF1着→big_distance_change。前走は牡牝混合GIで fillies_to_open に当たらない。前走54kg→55kgは3歳牝馬の定量（馬齢）による差で斤量面の不利ではないため weight_increase は付けない。前走16頭9番(中)→14番(外)→turf_to_outer。前走スプリンターズSは126日ぶり→second_start。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 7.4
+    },
+    {
+      "num": 15,
+      "gate": 7,
+      "name": "エコロブルーム",
+      "ability": 71,
+      "style": "先行",
+      "gate_zone": "外",
+      "early_positions": [
+        5,
+        2,
+        5,
+        3
+      ],
+      "minus": [
+        "turf_to_outer"
+      ],
+      "plus": [
+        "second_start"
+      ],
+      "notes": "騎手坂井瑠星（前走は武豊。11位→7位で加点なし）。京成杯AH(GIII)2着0.1（58kgのトップハンデで5-5-4から）、安土城S(L)1着、2024年NZT1着。GIの出走なし→71。前走16頭7番(中)→15番(外)→turf_to_outer。前走京成杯AHは安土城Sから97日ぶり→second_start。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 21.3
+    },
+    {
+      "num": 16,
+      "gate": 8,
+      "name": "スズハローム",
+      "ability": 69,
+      "style": "追込",
+      "gate_zone": "外",
+      "early_positions": [
+        16,
+        14,
+        14,
+        11,
+        14
+      ],
+      "minus": [
+        "weight_increase",
+        "turf_to_outer"
+      ],
+      "plus": [
+        "second_start"
+      ],
+      "notes": "騎手藤懸貴志（継続）。スワンS(GII)2着0.0（16-16から上がり32.7）、ダービー卿CT(GIII)1着、洛陽S(L)1着。安田記念17着1.8とGIでは大敗。6歳。→69。前走57kg→58kg→weight_increase。前走18頭4番(内)→16番(外)→turf_to_outer。前走スワンSは127日ぶり→second_start。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 53.8
+    },
+    {
+      "num": 17,
+      "gate": 8,
+      "name": "アンパドゥ",
+      "ability": 73,
+      "style": "差し",
+      "gate_zone": "外",
+      "early_positions": [
+        9,
+        12,
+        8,
+        6,
+        4
+      ],
+      "minus": [
+        "weight_increase",
+        "turf_to_outer"
+      ],
+      "plus": [],
+      "notes": "騎手岩田望来（継続）。富士S(GII)2着0.1（2人気・9-8）、関屋記念(GIII・不良)を0.9差で圧勝、分倍河原S(3勝)1着（上がり32.7）。GIの出走なし。富士Sの記録の72に、同レース2着の内容で+1の73。前走57kg→58kg→weight_increase。前走14頭10番(中)→17番(外)→turf_to_outer。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 13.0
+    },
+    {
+      "num": 18,
+      "gate": 8,
+      "name": "オフトレイル",
+      "ability": 73,
+      "style": "差し",
+      "gate_zone": "外",
+      "early_positions": [
+        11,
+        8,
+        12,
+        7,
+        13
+      ],
+      "minus": [
+        "turf_to_outer"
+      ],
+      "plus": [
+        "second_start"
+      ],
+      "notes": "騎手菅原明良（継続）。スワンS(GII)3着0.0（1人気）、2025年スワンS1着、昨年のマイルCS4着0.4（13-13から上がり32.6）、安田記念6着0.2、マイラーズC5着0.2。→73。昨年のマイルCSは4着で好走歴（3着以内）に当たらず course_repeater なし。前走18頭9番(中)→18番(外)→turf_to_outer。前走スワンSは127日ぶり→second_start。（11/20 枠順確定・netkeiba出馬表と全戦績、JRAリーディング（netkeiba・11/20時点）で確認）",
+      "pred_odds_1120": 26.2
+    }
+  ]
+}

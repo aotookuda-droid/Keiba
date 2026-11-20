@@ -27,7 +27,12 @@ def _get(url, name, encoding, fresh=False):
         return path.read_text(encoding='utf-8')
     CACHE.mkdir(parents=True, exist_ok=True)
     with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
-        text = r.read().decode(encoding, 'replace')
+        raw = r.read()
+    # ページが文字コードを宣言していればそれに従う（db.netkeiba.com は 2026/11 までに EUC-JP から UTF-8 に変わった）
+    declared = re.search(rb'charset=["\']?([\w-]+)', raw[:2048])
+    if declared:
+        encoding = declared.group(1).decode('ascii').lower()
+    text = raw.decode(encoding, 'replace')
     path.write_text(text, encoding='utf-8')
     time.sleep(PAUSE)
     return text
