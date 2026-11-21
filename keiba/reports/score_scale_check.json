@@ -1880,6 +1880,316 @@
     "一様": 2.833213344056216,
     "客観能力 T8": 1.3422130408934343
    }
+  },
+  {
+   "race": "福島記念(G3)",
+   "title": "2026/11/21 福島11R 福島記念(G3) 芝2000 15:20発走",
+   "asof": "2026-11-21 15:07:10",
+   "n": 15,
+   "top": 1,
+   "top_name": "カラマティアノス",
+   "gap12": 0.04999999999999716,
+   "gap14": 1.0499999999999972,
+   "sd": 5.728740253222245,
+   "top_p8": 0.13896471751435366,
+   "top_mkt": 0.10305502340725313,
+   "fav": 13,
+   "fav_name": "マリアイリダータ",
+   "fav_mkt": 0.24046172128359067,
+   "fav_p8": 0.05112226262172777,
+   "fav_score_rank": 8,
+   "implied_t": 23.887351451678843,
+   "proxy_sd": 8.51491937944878,
+   "proxy_gap12": 0.16837743094737334,
+   "proxy_implied_t": 11.412111187520479,
+   "corr": 0.14326258730641767,
+   "top5": [
+    {
+     "num": 1,
+     "name": "カラマティアノス",
+     "score": 73.74,
+     "ability": 71,
+     "pace": -0.7599999999999999,
+     "flags": 5,
+     "flag_names": [
+      "turf_to_inner",
+      "final_work_strong"
+     ],
+     "p8": 0.13896471751435366,
+     "mkt": 0.10305502340725313,
+     "proxy_p": 0.0774045828805686
+    },
+    {
+     "num": 14,
+     "name": "サヴォーナ",
+     "score": 73.69,
+     "ability": 65,
+     "pace": 1.19,
+     "flags": 6,
+     "flag_names": [
+      "big_distance_change",
+      "top_jockey_switch"
+     ],
+     "p8": 0.13809889653886323,
+     "mkt": 0.0518642928258725,
+     "proxy_p": 0.041076015639917245
+    },
+    {
+     "num": 16,
+     "name": "レイニング",
+     "score": 72.74,
+     "ability": 69,
+     "pace": -0.7599999999999999,
+     "flags": 6,
+     "flag_names": [
+      "fastest_last_unrewarded",
+      "final_work_strong"
+     ],
+     "p8": 0.12263593277496039,
+     "mkt": 0.0721385163850772,
+     "proxy_p": 0.07005754355210657
+    },
+    {
+     "num": 2,
+     "name": "ヴィスマール",
+     "score": 72.69,
+     "ability": 61,
+     "pace": 1.19,
+     "flags": 9,
+     "flag_names": [
+      "turf_to_inner",
+      "weight_drop",
+      "second_start",
+      "bloodline_ground"
+     ],
+     "p8": 0.12187184844589731,
+     "mkt": 0.03542516429624327,
+     "proxy_p": 0.03333101205598389
+    },
+    {
+     "num": 6,
+     "name": "バルナバ",
+     "score": 69.74000000000001,
+     "ability": 60,
+     "pace": -0.7599999999999999,
+     "flags": 12,
+     "flag_names": [
+      "weight_drop",
+      "big_distance_change",
+      "top_jockey_switch",
+      "final_work_strong"
+     ],
+     "p8": 0.08428636179076082,
+     "mkt": 0.014943948780336141,
+     "proxy_p": 0.010352702704591835
+    }
+   ],
+   "gap_for_mkt": -2.6685284252058636,
+   "horses": [
+    {
+     "num": 1,
+     "flags": {
+      "turf_to_inner": 2,
+      "final_work_strong": 3
+     },
+     "p8": 0.13896471751435366,
+     "mkt": 0.10305502340725313,
+     "mkt_place": 0.31758249953022855,
+     "win": false,
+     "top3": true
+    },
+    {
+     "num": 2,
+     "flags": {
+      "turf_to_inner": 2,
+      "weight_drop": 3,
+      "second_start": 2,
+      "bloodline_ground": 2
+     },
+     "p8": 0.12187184844589731,
+     "mkt": 0.03542516429624327,
+     "mkt_place": 0.11848797195741455,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 3,
+     "flags": {
+      "turf_to_inner": 2,
+      "weight_drop": 3
+     },
+     "p8": 0.04511523841679107,
+     "mkt": 0.030520141547532662,
+     "mkt_place": 0.10263170531390885,
+     "win": false,
+     "top3": true
+    },
+    {
+     "num": 4,
+     "flags": {
+      "turf_to_inner": 2,
+      "big_distance_change": 2
+     },
+     "p8": 0.03100721967395907,
+     "mkt": 0.010095721122593502,
+     "mkt_place": 0.034690698831151716,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 6,
+     "flags": {
+      "weight_drop": 3,
+      "big_distance_change": 2,
+      "top_jockey_switch": 4,
+      "final_work_strong": 3
+     },
+     "p8": 0.08428636179076082,
+     "mkt": 0.014943948780336141,
+     "mkt_place": 0.05109305473418847,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 7,
+     "flags": {
+      "stable_concern": -4,
+      "second_start": 2
+     },
+     "p8": 0.03956599629948342,
+     "mkt": 0.030520141547532662,
+     "mkt_place": 0.1026317053139088,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 8,
+     "flags": {
+      "big_distance_change": 2
+     },
+     "p8": 0.03100721967395907,
+     "mkt": 0.08180656497276796,
+     "mkt_place": 0.25909810833346514,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 9,
+     "flags": {
+      "jockey_downgrade": -4,
+      "weight_drop": 3
+     },
+     "p8": 0.013436435310988789,
+     "mkt": 0.011738515979820256,
+     "mkt_place": 0.04026741398190839,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 10,
+     "flags": {
+      "fillies_to_open": -3,
+      "weight_drop": 3
+     },
+     "p8": 0.024148446962946397,
+     "mkt": 0.04384108730584802,
+     "mkt_place": 0.14526705812459023,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 11,
+     "flags": {
+      "slow_start": -4,
+      "big_distance_change": 2,
+      "second_start": 2,
+      "final_work_strong": 3
+     },
+     "p8": 0.053142132537519864,
+     "mkt": 0.13225394670597485,
+     "mkt_place": 0.3915191004547904,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 12,
+     "flags": {
+      "course_repeater": 3
+     },
+     "p8": 0.021310929647028576,
+     "mkt": 0.02110435319776195,
+     "mkt_place": 0.07168978085388593,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 13,
+     "flags": {
+      "turf_to_outer": -3,
+      "fastest_last_unrewarded": 3
+     },
+     "p8": 0.05112226262172777,
+     "mkt": 0.24046172128359067,
+     "mkt_place": 0.6015403456566352,
+     "win": true,
+     "top3": true
+    },
+    {
+     "num": 14,
+     "flags": {
+      "big_distance_change": 2,
+      "top_jockey_switch": 4
+     },
+     "p8": 0.13809889653886323,
+     "mkt": 0.0518642928258725,
+     "mkt_place": 0.17028594369073544,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 15,
+     "flags": {
+      "turf_to_outer": -3,
+      "fastest_last_unrewarded": 3,
+      "final_work_strong": 3,
+      "bloodline_ground": 2
+     },
+     "p8": 0.08428636179076067,
+     "mkt": 0.12023086064179533,
+     "mkt_place": 0.36199114527524373,
+     "win": false,
+     "top3": false
+    },
+    {
+     "num": 16,
+     "flags": {
+      "fastest_last_unrewarded": 3,
+      "final_work_strong": 3
+     },
+     "p8": 0.12263593277496039,
+     "mkt": 0.0721385163850772,
+     "mkt_place": 0.23122346794794627,
+     "win": false,
+     "top3": false
+    }
+   ],
+   "winner": 13,
+   "winner_name": "マリアイリダータ",
+   "winner_score_rank": 8,
+   "loss": {
+    "T2": 5.2550343863253755,
+    "T3": 4.106034797117311,
+    "T4": 3.589631595337714,
+    "T5": 3.3137712302928186,
+    "T6": 3.1498163228236953,
+    "T8": 2.9735352089039315,
+    "T10": 2.885998434943603,
+    "T12": 2.836283054349438,
+    "市場": 1.4251943651660985,
+    "本番の混合（記録値）": 1.5573251437972753,
+    "一様": 2.70805020110221,
+    "客観能力 T8": 1.6983169279918935
+   }
   }
  ],
  "pending": [],
