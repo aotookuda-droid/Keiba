@@ -195,7 +195,13 @@ function render() {
   bets.innerHTML = r.bets.length ? r.bets.map(b => `<div><span>${esc(b.type)} ${b.type === '枠連' ? '枠' : ''}${b.horses.join(sepOf(b.type))}</span><span>${b.stake}円 · ${b.odds.toFixed(1)}倍 · 期待値${b.ev.toFixed(2)} <span class="${b.ev * 0.9 >= EVT ? 'robust' : 'fragile'}">${b.ev * 0.9 >= EVT ? '✓' : '—'}</span></span></div>`).join('') + `<div><span>合計</span><span>${r.stake}円${r.kelly_stake && r.kelly_stake < r.stake ? `（ケリー配分 ${r.kelly_stake}円を最低${MIN.toLocaleString()}円に引き上げ、比率は同じ）` : ''}</span></div>`
     : `<div><span>見送り</span><span>${esc(r.skip || `期待値${EVT}以上の馬券なし`)}</span></div>`;
   const mo = r.market_only;
-  if (mo) bets.innerHTML += `<div><span>市場のみの試算（同じオッズ・予算）</span><span>${mo.bets.length ? `${mo.bets.length}点・${mo.total_stake}円（本番と共通 ${mo.shared.length}点・${mo.shared_stake}円）` : '買い目なし'}</span></div>`;
+  if (mo) {
+    // 市場の分布だけから作った買い目（買わない・比較用）。本番と同じ券種・組は「本番と共通」と付ける
+    const key = b => `${b.type}:${[...b.horses].join('-')}`, shared = new Set((mo.shared || []).map(key));
+    bets.innerHTML += `<div class="loose-h"><span>参考：市場のみの試算（同じオッズ・予算・制約で、モデルを混ぜない）※買わない。市場だけで買い目が出るのは券種ごとのオッズのずれ・売上の薄さを拾っている可能性があり、モデルの優位の証拠にはならない</span></div>`;
+    bets.innerHTML += mo.bets.length ? mo.bets.map(b => `<div class="loose"><span>${esc(b.type)} ${b.type === '枠連' ? '枠' : ''}${b.horses.join(sepOf(b.type))}${shared.has(key(b)) ? '（本番と共通）' : ''}</span><span>${b.stake}円 · ${b.odds.toFixed(1)}倍 · 期待値${b.ev.toFixed(2)}</span></div>`).join('') + `<div class="loose"><span>合計</span><span>${mo.total_stake}円（本番と共通 ${mo.shared.length}点・本番側 ${mo.shared_stake}円）</span></div>`
+      : `<div class="loose"><span>市場のみ</span><span>買い目なし</span></div>`;
+  }
   const lo = r.loose;
   if (lo) {
     bets.innerHTML += `<div class="loose-h"><span>参考：緩い基準（期待値${lo.ev_threshold.toFixed(1)}以上・乖離ゲート${lo.divergence_gate ? 'あり' : 'なし'}・混合率${lo.model_weight}。単複3%未満除外・最低1,000円は本番と同じ）※買わない・答え合わせ用。本番との差は主に乖離ゲートと混合率</span></div>`;
