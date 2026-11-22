@@ -81,6 +81,7 @@ def apply(edits, rec, today=None):
             continue
         try:
             engine.flag_points(dict(h, **after))
+            engine.check_retired_flags(dict(rec, horses=[dict(h, **after)]))
         except ValueError as err:
             report.append(f"{h['num']}番 {h['name']}: {err}")
             continue

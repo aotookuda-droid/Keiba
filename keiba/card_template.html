@@ -287,8 +287,8 @@ function editor(r, h) {
   const note = DRAFT[key]?.note ?? EDITS[key]?.note ?? '';
   const status = ED_MSG[key] || (EDITS[key] ? (sameState(EDITS[key], recState(h)) ? 'レコードに反映済み' : `保存済み・未反映（${esc((EDITS[key].saved_at || '').slice(5, 16).replace('T', ' '))}）`) : '');
   return `<div class="ed" data-k="${key}"><h3>加減点を編集（総合点 ${h.score} → ${editedScore(h, s)}）</h3>
-    <div class="sub">加点</div><div class="grid">${Object.keys(D.plus).map(k => row(k, 'plus')).join('')}</div>
-    <div class="sub">減点</div><div class="grid">${Object.keys(D.minus).map(k => row(k, 'minus')).join('')}</div>
+    <div class="sub">加点</div><div class="grid">${Object.keys(D.plus).filter(k => !(D.retired || {})[k] || s.plus.includes(k)).map(k => row(k, 'plus')).join('')}</div>
+    <div class="sub">減点</div><div class="grid">${Object.keys(D.minus).filter(k => !(D.retired || {})[k] || s.minus.includes(k)).map(k => row(k, 'minus')).join('')}</div>
     <label>理由 <input type="text" data-ed="note" data-k="${key}" value="${esc(note)}" placeholder="例：好走が札幌・函館に偏る"></label>
     <div class="acts"><button type="button" data-ed="save" data-k="${key}" data-n="${h.num}"${dirty ? '' : ' disabled'}>保存</button>
       <button type="button" class="sec" data-ed="reset" data-k="${key}" data-n="${h.num}"${EDITS[key] || DRAFT[key] ? '' : ' disabled'}>編集を取り消す</button>

@@ -46,6 +46,15 @@ class ApplyEditsTest(unittest.TestCase):
         self.assertIn('見直し済み', report[0])
         self.assertEqual(A.apply([edit(saved_at='2026-10-10T20:00:00.000Z')], rec)[0], [13])
 
+    def test_retired_flag_cannot_be_added_after_its_date(self):
+        rec = dict(record(), start_at='2026-11-29T15:40:00+09:00')
+        rec['horses'][0]['minus'] = []
+        base = {'plus': ['breaking_out'], 'minus': [], 'flag_adjust': {'breaking_out': -1}}
+        applied, report = A.apply([edit(minus=['turf_to_outer'], flag_adjust={'breaking_out': -1}, base=base)], rec)
+        self.assertEqual(applied, [])
+        self.assertIn('廃止したフラグ', report[0])
+        self.assertEqual(rec['horses'][0]['minus'], [])
+
     def test_invalid_discount_is_rejected(self):
         rec = record()
         applied, report = A.apply([edit(flag_adjust={'breaking_out': 2})], rec)

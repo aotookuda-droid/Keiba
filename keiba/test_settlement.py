@@ -336,8 +336,13 @@ class RulePeriodTest(unittest.TestCase):
         plan = {'stake': 1000, 'refund': 0, 'payout': 500}
         items = [{'start_at': '2026-11-08T15:40:00+09:00', 'plans': {'本番': plan}},
                  {'start_at': '2026-11-15T15:40:00+09:00', 'plans': {'本番': plan}},
-                 {'start_at': '2026-11-16T15:40:00+09:00', 'plans': {'参考': plan}}]
-        before, after = settlement.rule_periods(items, '本番')
+                 {'start_at': '2026-11-16T15:40:00+09:00', 'plans': {'参考': plan}},
+                 {'start_at': '2026-11-22T15:40:00+09:00', 'plans': {'本番': plan}},
+                 {'start_at': '2026-11-23T15:40:00+09:00', 'plans': {'本番': plan}}]
+        before, after, latest = settlement.rule_periods(items, '本番')
         self.assertEqual((before[1], before[2]), (1, [1000, 0, 500]))
-        self.assertEqual((after[1], after[2]), (1, [1000, 0, 500]))
+        # 変更日当日（11/22 マイルCS）は前の期間、翌日から新しい期間
+        self.assertEqual((after[1], after[2]), (2, [2000, 0, 1000]))
+        self.assertEqual((latest[1], latest[2]), (1, [1000, 0, 500]))
         self.assertIn('2026-11-13', after[0])
+        self.assertIn('turf_to_outer', latest[0])

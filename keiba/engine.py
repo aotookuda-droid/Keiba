@@ -33,7 +33,9 @@ WIN_PLACE_MIN_PROB = 0.03
 MIN_STAKE = 1000
 # 購入ルールを変えた日。30レースごとの見直しで、この日の前後を分けて比べる（engine_config.rules_changed に残す）
 RULES_CHANGED = [{'date': '2026-11-13', 'first_race': '2026/11/15 京都11R エリザベス女王杯',
-                  'change': '期待値1.2→1.05、単勝・複勝は混合後勝率3%未満を除外、買い目があれば最低1,000円（ケリー比率で配分）'}]
+                  'change': '期待値1.2→1.05、単勝・複勝は混合後勝率3%未満を除外、買い目があれば最低1,000円（ケリー比率で配分）'},
+                 {'date': '2026-11-22', 'first_race': '2026/11/23 以降の最初の重賞',
+                  'change': '芝の外枠替わり（turf_to_outer −3）を廃止'}]
 SOFTMAX_TEMP = 8.0
 # 着順分布でのモデルの重み。モデル（Harville）と市場（三連単オッズ）の上位3頭の着順確率を
 # 対数空間でこの比率で混ぜ、1つの分布にする。1.0 でモデルのみ。
@@ -55,7 +57,7 @@ PLACE_DISCOUNT_WIN_MARKET = (0.807, 0.692)
 REFERENCE_PLACE_DISCOUNTS = {'lambda_model': {'model': PLACE_DISCOUNT_MODEL},
                              'lambda_both': {'model': PLACE_DISCOUNT_MODEL, 'win_market': PLACE_DISCOUNT_WIN_MARKET}}
 # 判断記録に残す設定の版。PACE_FIT・PACE_PRIOR・加減点などを変えたら日付を更新する（期間の途中で頻繁に変えない）
-CONFIG_VERSION = '2026-11-13'
+CONFIG_VERSION = '2026-11-22'
 TAKEOUT_WIN = 0.20
 BIAS_FLAT = 0.08
 # 資金配分の基準資金（期待対数成長の計算用）。2026/10/12 ユーザー指定で 80,000 → 8,000円（土日上限と同額）。未検証
@@ -65,6 +67,11 @@ DECISION_BEFORE = timedelta(minutes=10)
 ODDS_WINDOW = timedelta(minutes=5)
 BET_TYPES = ('win', 'place', 'wakuren', 'umaren', 'wide', 'umatan', 'sanrenpuku', 'sanrentan')
 
+# 廃止したフラグ {キー: 廃止日}。この日より後に発走するレースでは使えない（analyze が拒否する）。古い記録の再計算・
+# 答え合わせのために重みの表には残す。turf_to_outer（芝で外枠替わり −3）は 2026/11/22 ユーザー指定で廃止:
+# 芝重賞約1,000レースで外枠の不利は約−0.5点（95%区間に−3を含まない）、−3を市場に上乗せすると当たりが悪くなり、
+# 外すと最も良かった（keiba/reports/course_gate_check.md）
+RETIRED_FLAGS = {'turf_to_outer': '2026-11-22'}
 MINUS_WEIGHTS = {
     'front_runner_bad_pace': -6,
     'long_layoff': -5,
@@ -235,6 +242,25 @@ def bias_fit(horse, inner_outer, front_back):
     io = {'inner': -1, 'flat': 0, 'outer': 1}[inner_outer]
     fb = {'front': -1, 'flat': 0, 'closer': 1}[front_back]
     return io * ZONE[horse['gate_zone']] * 3 - fb * FRONTNESS[horse['style']] * 3
+
+
+def race_date(race):
+    """発走日（YYYY-MM-DD）。start_at が無ければレース名の先頭の日付。分からなければ None。"""
+    if race.get('start_at'):
+        return race['start_at'][:10]
+    m = re.match(r'(\d{4})/(\d{2})/(\d{2})', race.get('race', ''))
+    return f'{m[1]}-{m[2]}-{m[3]}' if m else None
+
+
+def check_retired_flags(race):
+    """廃止日より後に発走するレースで、廃止したフラグ（RETIRED_FLAGS）が付いていれば止める。"""
+    day = race_date(race)
+    if not day:
+        return
+    bad = [f"{h['num']}番 {k}" for h in race['horses'] for k in h.get('minus', []) + h.get('plus', [])
+           if k in RETIRED_FLAGS and day > RETIRED_FLAGS[k]]
+    if bad:
+        raise ValueError(f"廃止したフラグが付いている（{'・'.join(bad)}）。RETIRED_FLAGS を参照してレコードから外す")
 
 
 def flag_points(horse):
@@ -738,6 +764,7 @@ def analyze(race, cap=RACE_CAP, model_weight=MODEL_WEIGHT, market='auto', others
         bias = race.get('bias', {})
         inner_outer, front_back = bias.get('inner_outer', 'flat'), bias.get('front_back', 'flat')
     pace = race.get('pace') or predict_pace(horses)
+    check_retired_flags(race)
     scores = {h['num']: total_score(h, pace, inner_outer, front_back) for h in horses}
     odds = {k: {kk: vv for kk, vv in v.items() if all(int(x) not in scratched for x in re.split('[->]', kk))}
             if k != 'wakuren' else v for k, v in race['odds'].items()}

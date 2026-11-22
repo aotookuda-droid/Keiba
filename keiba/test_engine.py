@@ -484,9 +484,23 @@ class EngineTest(unittest.TestCase):
         self.assertEqual(engine.frame_of(5, 7), 5)
         self.assertEqual([engine.gate_zone_of(g) for g in range(1, 9)], ['内', '内', '中', '中', '中', '中', '外', '外'])
 
+    def test_retired_flag_rejected_after_its_date(self):
+        def race(day):
+            return {'race': f'{day.replace("-", "/")} 京都11R テスト(G1)', 'start_at': f'{day}T15:40:00+09:00',
+                    'horses': [{'num': 1, 'minus': ['turf_to_outer'], 'plus': []}, {'num': 2, 'minus': [], 'plus': []}]}
+        engine.check_retired_flags(race('2026-11-22'))  # 廃止日当日までは当時の基準で使える
+        engine.check_retired_flags(race('2026-10-04'))
+        with self.assertRaises(ValueError) as e:
+            engine.check_retired_flags(race('2026-11-23'))
+        self.assertIn('1番 turf_to_outer', str(e.exception))
+        # 古い記録の再計算のため重みは残す
+        self.assertEqual(engine.MINUS_WEIGHTS['turf_to_outer'], -3)
+        self.assertEqual(engine.RETIRED_FLAGS, {'turf_to_outer': '2026-11-22'})
+
     def test_rules_change_date_recorded(self):
         cfg = engine.engine_config()
-        self.assertEqual(cfg['rules_changed'][0]['date'], '2026-11-13')
+        self.assertEqual([c['date'] for c in cfg['rules_changed']], ['2026-11-13', '2026-11-22'])
+        self.assertEqual(cfg['version'], '2026-11-22')
         self.assertEqual((cfg['ev_threshold'], cfg['win_place_min_prob'], cfg['min_stake']), (1.05, 0.03, 1000))
 
     # 4. 100円単位で選び直し、丸めで消えた場合は理由を分ける
