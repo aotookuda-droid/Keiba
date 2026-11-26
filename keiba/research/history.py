@@ -93,8 +93,11 @@ def parse_race(html, race_id):
 
 
 def past_race_ids(word):
-    """同名レースの race_id（新しい順）。"""
-    q = urllib.parse.quote(word.encode('euc-jp'))
+    """同名レースの race_id（新しい順）。
+
+    db.netkeiba.com は 2026/11 までに UTF-8 に変わり、EUC-JP の検索語では結果が0件になる（11/26 ジャパンCで確認）。
+    """
+    q = urllib.parse.quote(word.encode('utf-8'))
     html = _get(f'https://db.netkeiba.com/race/list.html?word={q}', f'list_{q.replace("%", "")}.html', 'euc-jp')
     ids = []
     for rid in re.findall(r'/race/(\d{12})/', html):
