@@ -16,3 +16,8 @@ Thumbs.db
 logs/
 data/
 *.csv
+# keiba の台帳ロック・書きかけファイル
+*.lock
+*.tmp
+keiba/data/cache/
+keiba/data/graded_*.json
